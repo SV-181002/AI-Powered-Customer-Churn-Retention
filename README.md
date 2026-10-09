@@ -1,138 +1,230 @@
-# AI-Powered Customer Churn & Retention Command Center
+# 📉 AI-Powered Customer Churn & Retention Command Center
 
-An end-to-end customer churn analytics and machine learning project that analyzes customer behavior, predicts churn probability, identifies churn-risk drivers, and presents actionable customer risk insights through an interactive Power BI dashboard.
+End-to-end customer churn analytics project: analyze customer behavior, predict churn probability with machine learning, identify churn drivers, and monitor retention risk through an interactive Power BI dashboard.
+
+![Dashboard Overview](screenshots/___dashboard_overview.png)
+
+**Key result:** Overall churn rate of **26.54%** across **7,043 customers**. The best model (**___**) reached **___% accuracy** and **___% recall**.
 
 ---
 
 ## 📌 Project Overview
 
-Customer churn is an important business problem because losing existing customers can directly affect revenue and long-term customer relationships.
+Customer churn directly affects revenue, and keeping an existing customer is usually cheaper than acquiring a new one. This project helps a telecom company find customers who are likely to leave so the retention team can act early.
 
-This project uses Python and Machine Learning to:
+Using Python, machine learning and Power BI, the project:
 
-- Analyze customer churn patterns
-- Clean and prepare customer data
-- Explore factors associated with churn
-- Train multiple classification models
-- Compare model performance
-- Identify important churn-related features
-- Generate churn probability scores for customers
-- Categorize customers into risk levels
-- Assign retention actions based on predicted risk
-- Build an interactive Power BI Command Center for business monitoring
+- Cleans and prepares customer data
+- Explores factors linked to churn
+- Trains and compares three classification models
+- Identifies the main churn drivers
+- Predicts a churn probability for every customer
+- Groups customers into Low, Medium and High risk
+- Suggests a retention action for each risk level
+- Presents everything in an interactive Power BI dashboard
 
 ---
 
-## 🎯 Business Problem
-
-A company wants to identify customers who are more likely to churn so that retention teams can focus their efforts on customers with higher predicted risk.
-
-The project answers questions such as:
+## 🎯 Business Questions
 
 - What percentage of customers have churned?
-- Which customer characteristics are associated with churn?
-- Which contracts have higher churn patterns?
-- Which services and payment methods show different churn patterns?
-- Which customers have higher predicted churn probability?
-- How can customers be grouped into Low, Medium, and High Risk?
-- What retention action can be associated with each risk level?
-
----
-
-## 💡 Project Objectives
-
-1. Understand customer churn patterns.
-2. Clean and prepare the dataset for analysis.
-3. Perform exploratory data analysis using Python.
-4. Prepare categorical variables for Machine Learning.
-5. Train multiple classification models.
-6. Evaluate and compare model performance.
-7. Analyze churn-related model features.
-8. Generate customer-level churn probabilities.
-9. Create customer risk categories.
-10. Build a Power BI dashboard for churn and retention monitoring.
-
----
-
-## 🛠️ Technologies Used
-
-### Programming & Data Analysis
-- Python
-- Pandas
-- NumPy
-
-### Data Visualization
-- Matplotlib
-- Seaborn
-
-### Machine Learning
-- Scikit-learn
-- Logistic Regression
-- Decision Tree
-- Random Forest
-
-### Business Intelligence
-- Microsoft Power BI
-
-### Development Environment
-- Jupyter Notebook
-- Anaconda
-- Git
-- GitHub
+- Which contract types, services and payment methods show higher churn?
+- Which customer groups are most at risk?
+- Which model predicts churn best?
+- Which customers should the retention team contact first?
 
 ---
 
 ## 📊 Dataset
 
-The project uses the **Telco Customer Churn** dataset.
+- **Name:** Telco Customer Churn dataset
+- **Source:** ___ (for example, Kaggle)
+- **Size:** 7,043 customers
+- **Churn rate:** 26.54%
 
-The dataset contains customer information related to:
-
-- Customer demographics
-- Tenure
-- Internet services
-- Phone services
-- Online security
-- Technical support
-- Contract type
-- Payment method
-- Monthly charges
-- Total charges
-- Churn status
-
-The dataset contains **7,043 customers**.
-
-The observed overall customer churn rate in the project is **26.54%**.
+| Category | Columns |
+|----------|---------|
+| Demographics | Gender, senior citizen, partner, dependents |
+| Account | Tenure, contract type, payment method, paperless billing |
+| Services | Phone service, internet service, online security, tech support, streaming |
+| Charges | Monthly charges, total charges |
+| Target | Churn (Yes / No) |
 
 ---
 
 ## 🔄 Project Workflow
 
-```text
+```
 Raw Customer Data
-       ↓
-Data Understanding
        ↓
 Data Cleaning
        ↓
 Exploratory Data Analysis
        ↓
-Feature Preparation
+Feature Preparation (encoding categorical variables)
        ↓
-Train/Test Split
+Train / Test Split
        ↓
-Machine Learning
+Model Training (Logistic Regression, Decision Tree, Random Forest)
        ↓
-Model Evaluation
-       ↓
-Model Comparison
+Model Evaluation & Comparison
        ↓
 Churn Driver Analysis
        ↓
-Customer Churn Probability
-       ↓
-Risk Classification
+Churn Probability & Risk Classification
        ↓
 Retention Actions
        ↓
 Power BI Command Center
+```
+
+---
+
+## 🧹 Data Cleaning & Preparation
+
+- Checked data types, missing values and duplicates
+- Fixed the `TotalCharges` column (___ blank values handled by ___)
+- Encoded categorical variables for machine learning
+- Split the data into training and test sets (___% / ___%)
+
+---
+
+## 🔍 Exploratory Data Analysis (Key Findings)
+
+- Overall churn rate is **26.54%**
+- Customers on **___** contracts churn the most (___%)
+- Customers with **shorter tenure** are more likely to churn (___)
+- **___** payment method shows the highest churn (___%)
+- **___** (add one more finding from your analysis)
+
+---
+
+## 🤖 Model Results
+
+Three classification models were trained and compared on a held-out test set.
+
+| Model | Accuracy | Precision | Recall | F1-Score |
+|-------|----------|-----------|--------|----------|
+| Logistic Regression | ___ | ___ | ___ | ___ |
+| Decision Tree | ___ | ___ | ___ | ___ |
+| Random Forest | ___ | ___ | ___ | ___ |
+
+**Selected model:** ___, because ___ (for example, it had the best recall, so it catches more customers who will actually churn).
+
+---
+
+## 🔑 Key Churn Drivers
+
+The factors most associated with churn were:
+
+1. ___
+2. ___
+3. ___
+4. ___
+
+---
+
+## 🚦 Customer Risk Levels & Retention Actions
+
+Each customer receives a churn probability and a risk level.
+
+| Risk Level | Customers | Suggested Retention Action |
+|------------|-----------|----------------------------|
+| Low | ___ | ___ |
+| Medium | ___ | ___ |
+| High | ___ | ___ |
+
+---
+
+## 📈 Power BI Command Center
+
+The dashboard lets the retention team monitor churn and act on high-risk customers.
+
+It includes:
+
+- Churn rate and customer KPIs
+- Churn by contract type, services and payment method
+- Customer profile analysis
+- Churn probability and risk-level distribution
+- Churn drivers and retention insights
+- Filters to explore specific customer groups
+
+![Dashboard Page 2](screenshots/___page_2.png)
+
+![Dashboard Page 3](screenshots/___page_3.png)
+
+---
+
+## 💡 Business Recommendations
+
+1. ___ (for example, encourage month-to-month customers to move to longer contracts with a discount)
+2. ___ (for example, give early-tenure customers onboarding support)
+3. ___ (for example, contact all High-risk customers with a targeted offer)
+
+---
+
+## 🛠️ Tools & Technologies
+
+| Area | Tools |
+|------|-------|
+| Programming | Python, Pandas, NumPy |
+| Visualization | Matplotlib, Seaborn, Power BI |
+| Machine Learning | Scikit-learn (Logistic Regression, Decision Tree, Random Forest) |
+| Environment | Jupyter Notebook, Anaconda, VS Code |
+| Version Control | Git, GitHub |
+
+---
+
+## 📁 Project Structure
+
+```
+AI-Powered-Customer-Churn-Retention
+│
+├── data
+│   └── ___.csv
+│
+├── python
+│   └── ___.ipynb
+│
+├── powerbi
+│   └── ___.pbix
+│
+├── screenshots
+│
+├── .gitignore
+└── README.md
+```
+
+---
+
+## ▶️ How to Run
+
+1. Clone the repository
+   ```
+   git clone https://github.com/SV-181002/AI-Powered-Customer-Churn-Retention.git
+   ```
+2. Install the required libraries
+   ```
+   pip install pandas numpy matplotlib seaborn scikit-learn jupyter
+   ```
+3. Open the notebook in the `python` folder and run all cells
+4. Open the `.pbix` file in Power BI Desktop to explore the dashboard
+
+---
+
+## ⚠️ Limitations & Future Improvements
+
+- The dataset is a single snapshot, so trends over time cannot be analyzed
+- Add hyperparameter tuning and cross-validation
+- Handle class imbalance (for example, SMOTE or class weights)
+- Deploy the model as a simple web app
+
+---
+
+## 👨‍💻 Author
+
+**Durgampudi S V Krishna Reddy**
+MCA — Data Analyst
+
+📧 reddydsvkrishna@gmail.com
+🔗 [LinkedIn](https://linkedin.com/in/sv181002) | [GitHub](https://github.com/SV-181002)
