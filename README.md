@@ -4,7 +4,10 @@ End-to-end customer churn analytics project: analyze customer behavior, predict 
 
 ![Dashboard Overview](screenshots/___dashboard_overview.png)
 
-**Key result:** Overall churn rate of **26.54%** across **7,043 customers**. The best model (**___**) reached **___% accuracy** and **___% recall**.
+**Key results**
+- Overall churn rate: **26.54%** across **7,043 customers**
+- Best overall model: **Logistic Regression**, with **80.7% accuracy**, **0.609 F1-score** and **0.842 ROC-AUC** on the test set
+- **488 customers (6.9%)** were classified as **High Risk**, with an average churn probability of **75.1%**
 
 ---
 
@@ -61,9 +64,9 @@ Data Cleaning
        ↓
 Exploratory Data Analysis
        ↓
-Feature Preparation (encoding categorical variables)
+Feature Preparation (encoding categorical variables, scaling)
        ↓
-Train / Test Split
+Train / Test Split (80% / 20%)
        ↓
 Model Training (Logistic Regression, Decision Tree, Random Forest)
        ↓
@@ -83,56 +86,97 @@ Power BI Command Center
 ## 🧹 Data Cleaning & Preparation
 
 - Checked data types, missing values and duplicates
-- Fixed the `TotalCharges` column (___ blank values handled by ___)
-- Encoded categorical variables for machine learning
-- Split the data into training and test sets (___% / ___%)
+- Converted `TotalCharges` to a numeric column and handled blank values
+- Encoded categorical variables into 30 model features
+- Scaled features for Logistic Regression
+- Split the data into **5,634 training** and **1,409 test** customers (80% / 20%)
 
 ---
 
-## 🔍 Exploratory Data Analysis (Key Findings)
+## 🔍 Exploratory Data Analysis: Key Findings
 
-- Overall churn rate is **26.54%**
-- Customers on **___** contracts churn the most (___%)
-- Customers with **shorter tenure** are more likely to churn (___)
-- **___** payment method shows the highest churn (___%)
-- **___** (add one more finding from your analysis)
+**Churn by contract type**
+
+| Contract | Churn Rate |
+|----------|-----------|
+| Month-to-month | 42.7% |
+| One year | 11.3% |
+| Two year | 2.8% |
+
+**Churn by payment method**
+
+| Payment Method | Churn Rate |
+|----------------|-----------|
+| Electronic check | 45.3% |
+| Mailed check | 19.1% |
+| Bank transfer (automatic) | 16.7% |
+| Credit card (automatic) | 15.2% |
+
+**Churn by internet service**
+
+| Internet Service | Churn Rate |
+|------------------|-----------|
+| Fiber optic | 41.9% |
+| DSL | 19.0% |
+| No internet | 7.4% |
+
+**Churn by tenure**
+
+| Tenure | Churn Rate |
+|--------|-----------|
+| 0 - 12 months | 47.4% |
+| 13 - 24 months | 28.7% |
+| 25 - 48 months | 20.4% |
+| 49+ months | 9.5% |
 
 ---
 
 ## 🤖 Model Results
 
-Three classification models were trained and compared on a held-out test set.
+Three classification models were trained and compared on a held-out test set of 1,409 customers.
 
-| Model | Accuracy | Precision | Recall | F1-Score |
-|-------|----------|-----------|--------|----------|
-| Logistic Regression | ___ | ___ | ___ | ___ |
-| Decision Tree | ___ | ___ | ___ | ___ |
-| Random Forest | ___ | ___ | ___ | ___ |
+| Model | Accuracy | Precision | Recall | F1-Score | ROC-AUC |
+|-------|----------|-----------|--------|----------|---------|
+| Logistic Regression | 0.807 | 0.658 | 0.567 | 0.609 | 0.842 |
+| Decision Tree | 0.794 | 0.631 | 0.540 | 0.582 | 0.827 |
+| Random Forest | 0.803 | 0.673 | 0.500 | 0.574 | 0.845 |
 
-**Selected model:** ___, because ___ (for example, it had the best recall, so it catches more customers who will actually churn).
+**Selected model:** Logistic Regression. It had the highest accuracy, recall and F1-score, so it identifies more of the customers who actually churn, and its coefficients are easy to explain to a business team. Random Forest had the highest ROC-AUC (0.845) and precision, but missed more churners (recall 0.500).
 
 ---
 
 ## 🔑 Key Churn Drivers
 
-The factors most associated with churn were:
+**Factors that increase churn risk** (Logistic Regression coefficients)
 
-1. ___
-2. ___
-3. ___
-4. ___
+1. Fiber optic internet service
+2. Higher total charges
+3. Streaming movies and streaming TV
+4. Multiple phone lines
+
+**Factors that reduce churn risk**
+
+1. Longer tenure
+2. Two-year and one-year contracts
+3. Online security
+
+**Most important features** (Random Forest): tenure, total charges, monthly charges, fiber optic internet, two-year contract and electronic check payment.
+
+> Note: monthly charges and total charges are strongly related to tenure, so their individual coefficients should be interpreted with caution.
 
 ---
 
 ## 🚦 Customer Risk Levels & Retention Actions
 
-Each customer receives a churn probability and a risk level.
+Each customer receives a churn probability and is placed in a risk level.
 
-| Risk Level | Customers | Suggested Retention Action |
-|------------|-----------|----------------------------|
-| Low | ___ | ___ |
-| Medium | ___ | ___ |
-| High | ___ | ___ |
+| Risk Level | Customers | Share | Suggested Retention Action |
+|------------|-----------|-------|----------------------------|
+| Low Risk | 4,947 | 70.2% | ___ |
+| Medium Risk | 1,608 | 22.8% | ___ |
+| High Risk | 488 | 6.9% | ___ |
+
+**High-risk customer profile:** average churn probability 75.1%, average tenure 6.3 months, average monthly charges 85.39.
 
 ---
 
@@ -157,9 +201,11 @@ It includes:
 
 ## 💡 Business Recommendations
 
-1. ___ (for example, encourage month-to-month customers to move to longer contracts with a discount)
-2. ___ (for example, give early-tenure customers onboarding support)
-3. ___ (for example, contact all High-risk customers with a targeted offer)
+1. **Move month-to-month customers to longer contracts.** Month-to-month customers churn at 42.7%, compared with 2.8% for two-year customers.
+2. **Support new customers in their first year.** Customers in their first 12 months churn at 47.4%.
+3. **Review the electronic check experience.** Customers paying by electronic check churn at 45.3%, so offering automatic payment discounts may help.
+4. **Check fiber optic service quality and pricing.** Fiber optic customers churn at 41.9% compared with 19.0% for DSL.
+5. **Contact High Risk customers first.** The 488 high-risk customers have an average churn probability of 75.1%.
 
 ---
 
@@ -215,6 +261,7 @@ AI-Powered-Customer-Churn-Retention
 ## ⚠️ Limitations & Future Improvements
 
 - The dataset is a single snapshot, so trends over time cannot be analyzed
+- Recall is around 0.5-0.57, so some customers who will churn are still missed; threshold tuning could improve this
 - Add hyperparameter tuning and cross-validation
 - Handle class imbalance (for example, SMOTE or class weights)
 - Deploy the model as a simple web app
